@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cadastrar Usuário</title>
 </head>
 <body>
-    Criar o formulario de criação de usuario aqui!
+
+    {% block content %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Cadastrar</button>
+
+        </form>
+
+    {% endblock content %}
+
 </body>
 </html>

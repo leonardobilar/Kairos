@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from django.views import generic
+from django.views.generic import CreateView
 
 from .models import Usuario
+from .forms import CadastrarUsuario
 
-class IndexView(generic.ListView):
+class IndexView(CreateView):
     template_name = 'cadastro/index.html'
-    context_object_name = 'usuario'
-
-    def get_queryset(self):
-        return Usuario.objects
+    model = Usuario
+    form_class = CadastrarUsuario
+    success_url = '/cadastro'
