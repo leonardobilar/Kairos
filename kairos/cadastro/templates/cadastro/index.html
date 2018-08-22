@@ -1,22 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'cadastro/style.css' %}">
     <title>Cadastrar Usuário</title>
 </head>
 <body>
+    <div class="center">
+        {% block content %}
 
-    {% block content %}
+            <form method="POST">
 
-        <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit">Cadastrar</button>
 
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Cadastrar</button>
+            </form>
 
-        </form>
-
-    {% endblock content %}
+        {% endblock content %}
+    </div>
 
 </body>
 </html>

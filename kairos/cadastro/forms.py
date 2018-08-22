@@ -4,13 +4,13 @@ from .models import Usuario
 
 class CadastrarUsuario(forms.ModelForm):
 
-    nome = forms.CharField(label = 'Nome')
-    sobrenome = forms.CharField(label = 'Sobrenome')
-    email = forms.CharField(label = 'E-mail')
-    confirma_email = forms.CharField(label = 'Confirmar E-mail')
-    login = forms.CharField(label = 'Login')
-    senha = forms.CharField(widget=forms.PasswordInput(), label = 'Senha')
-    confirma_senha = forms.CharField(widget=forms.PasswordInput(), label = 'Confirmar senha')
+    nome = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}),label = 'Nome')
+    sobrenome = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Sobrenome')
+    email = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'E-mail')
+    confirma_email = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Confirmar E-mail')
+    login = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Login')
+    senha = forms.CharField(widget = forms.PasswordInput(attrs = {'class': 'input_field'}), label = 'Senha')
+    confirma_senha = forms.CharField(widget = forms.PasswordInput(attrs = {'class': 'input_field'}), label = 'Confirmar senha')
 
     class Meta:
         model = Usuario
