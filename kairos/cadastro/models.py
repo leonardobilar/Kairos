@@ -14,3 +14,21 @@ class Usuario(models.Model):
         #criptografia
         self.senha = make_password(self.senha)
         super().save(*args, **kwargs)
+
+
+class Comprador(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    cpf_cnpj = models.CharField(max_length = 14)
+
+
+class Vendedor(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    cpf_cnpj = models.CharField(max_length = 14)
+
+
+class Contato(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    tipo = models.CharField(max_length = 30)
+    pais = models.IntegerField(max_length = 3)
+    codigo_regiao = models.IntegerField(max_length = 2)
+    numero = models.IntegerField(max_length = 9)
