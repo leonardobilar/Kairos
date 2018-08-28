@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+
+    <div class="center">
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form.visible_fields %}
+            <p>
+                {{ field.errors }}
+                {{ field }}
+                {{ field.label_tag }}
+            </p>
+            {% endfor %}
+            <button type="submit" class="submit">Entrar</button>
+
+        </form>
+    </div>
+
+</body>
+</html>

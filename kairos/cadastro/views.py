@@ -8,3 +8,7 @@ class IndexView(CreateView):
     model = Usuario
     form_class = CadastrarUsuario
     success_url = '/cadastro'
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid()

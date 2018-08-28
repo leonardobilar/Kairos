@@ -37,3 +37,6 @@ class CadastrarUsuario(forms.ModelForm):
                 )
 
         return cleaned_data
+
+    def send_email(self):
+        pass
