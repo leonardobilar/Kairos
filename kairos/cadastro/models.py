@@ -1,19 +1,22 @@
-from django.contrib.auth.hashers import make_password
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 class Usuario(models.Model):
     nome = models.CharField(max_length = 30)
     sobrenome = models.CharField(max_length = 30)
     email = models.EmailField(unique = True)
-    login = models.CharField(max_length = 30, unique = True)
-    senha = models.EmailField()
+    usuario = models.CharField(max_length = 30, unique = True)
+    senha = models.CharField(max_length = 254)
     criacao = models.DateTimeField(auto_now = False, auto_now_add = True)
     ativo = models.BooleanField(default = False)
 
-    def save(self, *args, **kwargs):
-        #criptografia
-        self.senha = make_password(self.senha)
-        super().save(*args, **kwargs)
+    def login(self, usuario, senha):
+        try:
+            usuario = Usuario.objects.get(usuario = usuario, senha = senha, ativo = True)
+        except ObjectDoesNotExist:
+            usuario = None
+
+        return usuario
 
 
 class Comprador(models.Model):
@@ -30,8 +33,9 @@ class Contato(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     tipo = models.CharField(max_length = 30)
     pais = models.IntegerField()
-    codigo_regiao = models.IntegerField(max_length = 2)
+    codigo_regiao = models.IntegerField()
     numero = models.IntegerField()
+
 
 class EnderecoEntrega(models.Model):
     cep = models.IntegerField()

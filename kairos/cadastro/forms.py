@@ -8,13 +8,13 @@ class CadastrarUsuario(forms.ModelForm):
     sobrenome = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Sobrenome')
     email = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'E-mail')
     confirma_email = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Confirmar E-mail')
-    login = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Login')
+    usuario = forms.CharField(widget = forms.TextInput(attrs = {'class': 'input_field'}), label = 'Login')
     senha = forms.CharField(widget = forms.PasswordInput(attrs = {'class': 'input_field'}), label = 'Senha')
     confirma_senha = forms.CharField(widget = forms.PasswordInput(attrs = {'class': 'input_field'}), label = 'Confirmar senha')
 
     class Meta:
         model = Usuario
-        fields = ['nome', 'sobrenome', 'email', 'confirma_email', 'login', 'senha', 'confirma_senha']
+        fields = ['nome', 'sobrenome', 'email', 'confirma_email', 'usuario', 'senha', 'confirma_senha']
 
     def clean(self):
         cleaned_data = super().clean()

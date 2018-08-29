@@ -11,4 +11,4 @@ class IndexView(CreateView):
 
     def form_valid(self, form):
         form.send_email()
-        return super().form_valid()
+        return super().form_valid(form)
