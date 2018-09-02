@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password, check_password
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -10,13 +11,19 @@ class Usuario(models.Model):
     criacao = models.DateTimeField(auto_now = False, auto_now_add = True)
     ativo = models.BooleanField(default = False)
 
+    def save(self, *args, **kwargs):
+        self.senha = make_password(self.senha)
+        super().save(*args, **kwargs)
+
     def login(self, usuario, senha):
         try:
-            usuario = Usuario.objects.get(usuario = usuario, senha = senha, ativo = True)
+            usuario_valido = Usuario.objects.get(usuario = usuario, ativo = True)
+            if not check_password(senha, encoded = usuario_valido.senha):
+                usuario_valido = None
         except ObjectDoesNotExist:
-            usuario = None
+            usuario_valido = None
 
-        return usuario
+        return usuario_valido
 
 
 class Comprador(models.Model):

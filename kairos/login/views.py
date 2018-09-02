@@ -17,5 +17,7 @@ class IndexView(FormView):
             self.success_url = '/'
             return super().form_valid(form)
         else:
-            #self.success_url = '/login'
             return super().form_invalid(form)
+
+    def form_invalid(self, form):
+        raise
