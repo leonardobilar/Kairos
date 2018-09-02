@@ -1,6 +1,6 @@
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView
 
-from .forms import LoginForm
+from .forms import LoginForm, EsqueciSenhaForm
 from cadastro.models import Usuario
 
 class IndexView(FormView):
@@ -17,7 +17,12 @@ class IndexView(FormView):
             self.success_url = '/'
             return super().form_valid(form)
         else:
-            return super().form_invalid(form)
+            return self.form_invalid(form)
 
     def form_invalid(self, form):
-        raise
+        form.add_error(None, 'Usuário ou senha inválido!')
+        return super().form_invalid(form)
+
+class EsqueciSenhaView(FormView):
+    template_name = 'login/esqueci_senha.html'
+    form_class = EsqueciSenhaForm

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}">
-    <title>Login</title>
+    <title>Esqueci minha senha</title>
 </head>
 <body>
 
@@ -20,12 +20,9 @@
                 {{ field.label_tag }}
             </p>
             {% endfor %}
-            <a href="{% url 'login:esqueci_senha' %}">Esqueci minha senha</a>
-            <br/><br/>
-            <button type="submit" class="submit">Entrar</button>
+            <button type="submit" class="submit">Enviar e-mail</button>
 
         </form>
     </div>
-
 </body>
 </html>
