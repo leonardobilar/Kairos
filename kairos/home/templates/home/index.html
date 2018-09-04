@@ -5,8 +5,17 @@
     <title>Home</title>
 </head>
 <body>
-    <a href="{% url 'cadastro:index' %}">Cadastre-se</a>
-    <br />
-    <a href="{% url 'login:index' %}">Entrar</a>
+
+    {% if request.session.id %}
+
+        Bem vindo {{ request.session.nome }} <a href="{% url 'logout' %}">Sair</a>
+        <br/><br/>
+
+    {% else %}
+
+        <a href="{% url 'cadastro:index' %}">Cadastre-se</a>
+        <br />
+        <a href="{% url 'login:index' %}">Entrar</a>
+    {% endif %}
 </body>
 </html>

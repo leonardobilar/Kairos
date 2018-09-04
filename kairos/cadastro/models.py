@@ -11,10 +11,12 @@ class Usuario(models.Model):
     criacao = models.DateTimeField(auto_now = False, auto_now_add = True)
     ativo = models.BooleanField(default = False)
 
+    #criptografia de senha
     def save(self, *args, **kwargs):
         self.senha = make_password(self.senha)
         super().save(*args, **kwargs)
 
+    #Retorna um usuário válido no login
     def login(self, usuario, senha):
         try:
             usuario_valido = Usuario.objects.get(usuario = usuario, ativo = True)

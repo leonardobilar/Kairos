@@ -16,6 +16,7 @@ class CadastrarUsuario(forms.ModelForm):
         model = Usuario
         fields = ['nome', 'sobrenome', 'email', 'confirma_email', 'usuario', 'senha', 'confirma_senha']
 
+    #validações do formulário
     def clean(self):
         cleaned_data = super().clean()
 
@@ -25,11 +26,13 @@ class CadastrarUsuario(forms.ModelForm):
         email = cleaned_data.get('email')
         confirma_email = cleaned_data['confirma_email']
 
+        #valida senha
         if senha != confirma_senha:
             raise forms.ValidationError(
                 'Senha não confere! Digite a mesma senha nos campos Senha e Confirmar Senha.'
             )
 
+        #valida email
         if email and confirma_email:
             if email != confirma_email:
                 raise forms.ValidationError(
